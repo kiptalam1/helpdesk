@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" className={manrope.className}>
-			<body className="min-h-screen w-full antialiased">
+			<body className="min-h-screen w-full antialiased mx-auto flex flex-col items-center bg-background text-text">
 				<main className="max-w-4xl p-4 sm:p-6 md:p-8 lg:p-10">{children}</main>
 			</body>
 		</html>

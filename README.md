@@ -25,34 +25,34 @@ provides visibility, accountability, and resolution flow 3. Final Product Defini
 A single SaaS-style application with two surfaces:
 
 A) Public Request Intake Layer
-/support (or /request)
+   /support (or /request)
 simple form for external users
 converts input into structured requests
 B) Internal Operations System
-/inbox → triage
-/requests/[id] → detail view
-/dashboard → overview
-/admin → system control
+   /inbox → triage
+   /requests/[id] → detail view
+   /dashboard → overview
+   /admin → system control
 
 Built on:
 Next.js + Supabase
 
 4. Final MVP Scope (complete system, nothing missing)
    4.1 Public Layer
-   /support
-   form fields:
-   name
-   email
-   subject
-   message
-   type (support/sales/other)
-   submits request to backend API
+      /support
+      form fields:
+      - name
+      - email
+      - subject
+      - message
+      - type (support/sales/other)
+    submits request to backend API
    4.2 Authentication System
-   login for internal users only
-   roles:
-   admin
-   agent
-   viewer
+      login for internal users only
+      roles:
+      admin
+      agent
+      viewer
    4.3 Internal Inbox (/inbox)
    list of all incoming requests
    filters:
