@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { Inter, Manrope, Josefin_Sans } from "next/font/google";
 import "./globals.css";
 
-export const metadata: Metadata = {};
+export const metadata: Metadata = {
+	title: "HelpDesk",
+	description: "Support system",
+};
 
 const inter = Inter({
 	subsets: ["latin"],

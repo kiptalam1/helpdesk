@@ -1,5 +1,12 @@
 import React from "react";
 import SupportForm from "./SupportForm";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Support",
+	description: "Get help and submit support requests",
+};
+
 
 function SupportPage() {
 	return (
