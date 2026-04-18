@@ -3,7 +3,7 @@ import SupportForm from "./SupportForm";
 
 function SupportPage() {
 	return (
-		<div className="space-y-4">
+		<div className="space-y-4 ">
 			<h1 className="text-center text-3xl font-semibold text-primary">
 				Support
 			</h1>
