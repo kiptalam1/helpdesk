@@ -2,7 +2,7 @@ import React from "react";
 import Form from "next/form";
 function SupportForm() {
 	return (
-		<div className=" rounded-lg bg-card border border-border p-4">
+		<div className=" rounded-lg bg-card border border-border px-4 py-6">
 			<h2 className="text-center text-lg font-bold">Support Form</h2>
 			<Form
 				action=""
@@ -53,7 +53,7 @@ function SupportForm() {
 
 				<button
 					type="submit"
-					className="px-2 py-1 bg-primary rounded-md text-white font-semibold hover:opacity-70 transition-opacity duration-150 cursor-pointer">
+					className="my-4 px-2 py-1 bg-primary rounded-md text-white font-semibold hover:opacity-70 transition-opacity duration-150 cursor-pointer">
 					Submit
 				</button>
 			</Form>
