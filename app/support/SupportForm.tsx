@@ -1,20 +1,62 @@
-import React from "react";
-import Form from "next/form";
+"use client";
+
+import React, { ChangeEvent, SyntheticEvent, useState } from "react";
+import { supabase } from "@/lib/supabaseClient";
 function SupportForm() {
+	const [formData, setFormData] = useState({
+		username: "",
+		email: "",
+		subject: "",
+		content: "",
+	});
+
+	// for controlled input;
+	function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
+		const { name, value } = e.target;
+		setFormData((prev) => ({
+			...prev,
+			[name]: value,
+		}));
+	}
+
+	async function submitRequest(e: SyntheticEvent) {
+		e.preventDefault();
+
+		const { data, error } = await supabase
+			.from("requests")
+			.insert([
+				{
+					username: formData.username,
+					email: formData.email,
+					subject: formData.subject,
+					content: formData.content,
+				},
+			])
+			.select();
+
+		if (error) {
+			console.error(error);
+		}
+
+		console.log(data);
+	}
+	console.log(formData);
 	return (
 		<div className=" rounded-lg bg-card border border-border px-4 py-6">
 			<h2 className="text-center text-lg font-bold">Support Form</h2>
-			<Form
-				action=""
+			<form
+				onSubmit={submitRequest}
 				className="flex flex-col gap-4 w-full sm:max-w-sm md:max-w-md lg:max-w-lg">
 				<div className="flex flex-col gap-1">
-					<label htmlFor="name">Name</label>
+					<label htmlFor="username">Name</label>
 					<input
 						required
 						placeholder="Enter your full name ..."
 						type="text"
-						name="name"
-						id="name"
+						name="username"
+						id="username"
+						value={formData.username}
+						onChange={handleInputChange}
 						className="border border-border rounded-lg px-2 py-1 text-base outline-none focus:ring ring-primary placeholder:text-sm placeholder:italic"
 					/>
 				</div>
@@ -26,6 +68,8 @@ function SupportForm() {
 						type="email"
 						name="email"
 						id="email"
+						value={formData.email}
+						onChange={handleInputChange}
 						className="border border-border rounded-lg px-2 py-1 text-base outline-none focus:ring ring-primary placeholder:text-sm placeholder:italic"
 					/>
 				</div>
@@ -37,16 +81,25 @@ function SupportForm() {
 						type="text"
 						name="subject"
 						id="subject"
+						value={formData.subject}
+						onChange={handleInputChange}
 						className="border border-border rounded-lg px-2 py-1 text-base outline-none focus:ring ring-primary placeholder:text-sm placeholder:italic"
 					/>
 				</div>
 				<div className="flex flex-col">
-					<label htmlFor="message">Message</label>
+					<label htmlFor="content">Message</label>
 					<textarea
 						placeholder="Describe the issue ..."
 						required
-						name="message"
-						id="message"
+						name="content"
+						id="content"
+						value={formData.content}
+						onChange={(e) =>
+							setFormData((prev) => ({
+								...prev,
+								[e.target.name]: e.target.value,
+							}))
+						}
 						className="border border-border rounded-lg px-2 py-1 text-base outline-none focus:ring ring-primary min-h-16 max-h-50 overflow-y-scroll placeholder:text-sm placeholder:italic"
 					/>
 				</div>
@@ -56,7 +109,7 @@ function SupportForm() {
 					className="my-4 px-2 py-1 bg-primary rounded-md text-white font-semibold hover:opacity-70 transition-opacity duration-150 cursor-pointer">
 					Submit
 				</button>
-			</Form>
+			</form>
 		</div>
 	);
 }
