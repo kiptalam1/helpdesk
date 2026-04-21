@@ -6,6 +6,7 @@
 @theme {
   --color-background: oklch(98.5% 0.002 247.839);
   --color-text: #171717;
+  --color-text-muted: oklch(0.55 0.02 240);
   --color-primary: oklch(60% 0.118 184.704);
   --color-card: oklch(98.7% 0.002 197.1);
   --color-border: oklch(87.2% 0.007 219.6);
@@ -16,6 +17,7 @@
   --color-card: oklch(27.4% 0.006 286.033);
   --color-background: oklch(21% 0.006 285.885);
   --color-text: #ededed;
+  --color-text-muted: oklch(0.75 0.02 240);
   --color-border: oklch(44.2% 0.017 285.786);
 }
 
