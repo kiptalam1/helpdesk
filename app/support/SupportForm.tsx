@@ -2,7 +2,11 @@
 
 import React, { ChangeEvent, SyntheticEvent, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
+import { toast } from "sonner";
+
+
 function SupportForm() {
+	const [loading, setLoading] = useState(false);
 	const [formData, setFormData] = useState({
 		username: "",
 		email: "",
@@ -22,25 +26,36 @@ function SupportForm() {
 	async function submitRequest(e: SyntheticEvent) {
 		e.preventDefault();
 
-		const { data, error } = await supabase
-			.from("requests")
-			.insert([
+		try {
+			setLoading(true);
+			const toastId = toast.loading("Submitting...");
+			const { error } = await supabase.from("requests").insert([
 				{
 					username: formData.username,
 					email: formData.email,
 					subject: formData.subject,
 					content: formData.content,
 				},
-			])
-			.select();
+			]);
 
-		if (error) {
-			console.error(error);
+			if (error) {
+				console.error(error);
+				toast.error("Failed to submit request. Please try again.", {
+					id: toastId,
+				});
+			} else {
+				toast.success("Request submitted successfully", { id: toastId });
+				setFormData({
+					username: "",
+					email: "",
+					subject: "",
+					content: "",
+				});
+			}
+		} finally {
+			setLoading(false);
 		}
-
-		console.log(data);
 	}
-	console.log(formData);
 	return (
 		<div className=" rounded-lg bg-card border border-border px-4 py-6">
 			<h2 className="text-center text-lg font-bold">Support Form</h2>
@@ -106,8 +121,9 @@ function SupportForm() {
 
 				<button
 					type="submit"
+					disabled={loading}
 					className="my-4 px-2 py-1 bg-primary rounded-md text-white font-semibold hover:opacity-70 transition-opacity duration-150 cursor-pointer">
-					Submit
+					{loading ? "Submitting" : "Submit"}
 				</button>
 			</form>
 		</div>
