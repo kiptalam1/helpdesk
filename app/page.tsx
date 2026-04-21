@@ -11,13 +11,15 @@ export default function Home() {
 				in one place.
 			</p>
 			<div className="flex w-full max-w-sm flex-col items-center sm:flex-row gap-3 sm:max-w-none sm:items-center sm:justify-center">
-				<button
-					type="button"
-					className="cursor-pointer rounded-md border border-border px-5 py-2.5 font-semibold transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-px hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 active:translate-y-0 active:shadow-none">
-					Create Account
-				</button>
+				<Link href="/auth/register">
+					<button
+						type="button"
+						className="cursor-pointer rounded-md border border-border px-5 py-2.5 font-semibold transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-px hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 active:translate-y-0 active:shadow-none">
+						Create Account
+					</button>
+				</Link>
 				<span className="text-sm italic text-text/60">or</span>
-				<Link href="/login">
+				<Link href="/auth/login">
 					<button
 						type="button"
 						className="cursor-pointer rounded-md bg-primary px-5 py-2.5 font-semibold text-white transition-[transform,box-shadow,filter] duration-150 hover:-translate-y-px hover:shadow-sm hover:brightness-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 active:translate-y-0 active:shadow-none">
