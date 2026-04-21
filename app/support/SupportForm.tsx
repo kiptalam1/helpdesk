@@ -1,7 +1,7 @@
 "use client";
 
 import React, { ChangeEvent, SyntheticEvent, useState } from "react";
-import { supabase } from "@/lib/supabaseClient";
+import { createClient } from "@/lib/supabase/client"; 
 import { toast } from "sonner";
 
 
@@ -14,6 +14,7 @@ function SupportForm() {
 		content: "",
 	});
 
+	const supabase = createClient();
 	// for controlled input;
 	function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
 		const { name, value } = e.target;
